@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/favicon-32x32.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/main.css">
+    <title>MEMEGEN | Rami</title>
+</head>
+
+<body onload="onInit()">
+    <header class="header-main">
+        <h1 class="title-main">MEMEGEN Rami</h1>
+    </header>
+    <nav class="navbar-main"></nav>
+    <section class="memes-img-container">
+        <div class="memes-grid-container grid container">
+
+        </div>
+    </section>
+    <section class="meme-editor-container container flex">
+        <div class="canvas-container">
+            <canvas id="my-canvas" height="450" width="450"></canvas>
+        </div>
+        <div class="editor-tools-container">
+            <input class="text-input" type="text" id="fname" name="fname" placeholder="your text goes here"
+                onkeyup="onDrawText()">
+            <button class="font-size-button" onclick="onDecreaseFontSize()">-</button>
+            <!-- <div class="value-number">${book.rate}</div> -->
+            <button class="font-size-button" onclick="onIncreaseFontSize()">+</button>
+
+            <button class="font-size-button" onclick="onMoveTextDown()">-</button>
+            <button class="font-size-button" onclick="onMoveTextUp()">+</button>
+        </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+    <footer class="footer-main"></footer>
+
+    <script src="js/utils.js"></script>
+    <script src="js/storage-service.js"></script>
+    <script src="js/meme-gen-service.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

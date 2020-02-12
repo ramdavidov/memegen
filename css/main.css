@@ -1,0 +1,66 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* body {
+
+} */
+
+/* base: */
+.title-main {
+    background-color: aqua;
+}
+
+
+/* meme editor: */
+
+.meme-editor-container {
+    margin-top: 10px;
+}
+
+/* canvas: */
+.canvas-container {
+    margin-right: 10px
+}
+
+#my-canvas {
+    border: solid black 1px;
+}
+
+/* img gallery: */
+
+.memes-grid-container {
+    height: auto;
+    grid-template-columns: repeat(auto-fill, 100px);
+    gap: 5px;
+    /* grid-template-rows: 100px; */
+    background-color: darkorchid;
+}
+
+.memes-grid-container>* {
+    border: solid black 1px;
+    cursor: pointer;
+}
+
+.meme-img {
+    height: 100px;
+}
+
+/* helpers */
+
+.container {
+    width: 980px;
+    
+}
+
+.grid {
+    display: grid;
+}
+
+.flex {
+    display: flex;
+}
