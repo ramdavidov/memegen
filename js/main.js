@@ -22,7 +22,6 @@ function renderMemesGallery() {
 function onSelectImg(imgId) {
     let img = findImg(imgId)
     setCurrMeme(img)
-    // gCurrImgUrl = img.url
     let imgUrl = img.url
     initCanvas()
     drawImg(imgUrl)
@@ -49,10 +48,22 @@ function initCanvas() {
 function drawImg(imgUrl) {
     var img = new Image()
     img.src = imgUrl
-    // img.src = './img/1.jpg';
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
     }
+}
+
+function onNextTextLine() {
+nextTextLine()
+console.log(gMeme.selectedLineIdx)
+updateTextInputValue()
+}
+
+function updateTextInputValue() {
+    const elText = document.querySelector('.text-input')
+    let line = getLineForDisplay()
+    elText.value = line.txt
+
 }
 
 // Meme editor:
@@ -60,43 +71,38 @@ function onDrawText() {
     const elText = document.querySelector('.text-input')
     let elTextValue = elText.value
     let meme = getCurrMeme()
+    let line = getLineForDisplay()
 
-    meme.lines[0].txt = elTextValue
+    let LineIdx = meme.selectedLineIdx
+    line.txt = elTextValue
 
-    // gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height) - DON'T USE (IMG will clear for now)
     var img = new Image()
     img.src = meme.selectedImgUrl
 
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
-        drawText(elTextValue,
-            meme.lines[0].coordsX,
-            meme.lines[0].coordsY,
-            meme.lines[0].stroke,
-            meme.lines[0].color,
-            meme.lines[0].size,
-            meme.lines[0].align
-        )
+        drawText(line)
+        for (var i = 0; i < meme.lines.length; i++) {
+            if (i === LineIdx) continue
+            drawText(meme.lines[i])
+        }
     }
 }
 
-function drawText(text, x, y, strokeColor, fillColor, textSize, textAlign) {
-    gCtx.lineWidth = '2'
-    gCtx.strokeStyle = strokeColor
-    gCtx.fillStyle = fillColor
-    gCtx.font = `${textSize}px Impact`
-    gCtx.textAlign = textAlign
-    gCtx.fillText(text, x, y)
-    gCtx.strokeText(text, x, y)
+// Draw Text according to given params:
+function drawText(line) {
+    gCtx.lineWidth = `${line.lineWidth}`
+    gCtx.strokeStyle = line.stroke
+    gCtx.fillStyle = line.color
+    gCtx.font = `${line.size}px Impact`
+    gCtx.textAlign = line.align
+    gCtx.fillText(line.txt, line.coordsX, line.coordsY)
+    gCtx.strokeText(line.txt, line.coordsX, line.coordsY)
 }
 
 // call service to increase / decrease font size and draw:
 function onIncreaseFontSize() {
-    // var elModal = document.querySelector('.book-details-modal')
-    // var elRate = document.querySelector('.value-number')
-    // let meme = getCurrMeme()
     increaseFontSize()
-    // find line?
     onDrawText()
 
 }

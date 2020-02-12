@@ -12,10 +12,21 @@ var gMeme = {
     selectedLineIdx: 0,
     lines: [
         {
-            txt: 'I never eat Falafel',
-            coordsX: 100,
+            txt: '',
+            coordsX: 250,
             coordsY: 100,
             size: 40,
+            lineWidth: 2,
+            align: 'center',
+            color: 'white',
+            stroke: 'black'
+        },
+        {
+            txt: '',
+            coordsX: 250,
+            coordsY: 400,
+            size: 40,
+            lineWidth: 2,
             align: 'center',
             color: 'white',
             stroke: 'black'
@@ -33,6 +44,11 @@ function getCurrMeme() {
     return gMeme
 }
 
+function getLineForDisplay() {
+    return gMeme.lines[gMeme.selectedLineIdx]
+}
+
+
 //Update gMeme img info after selecting img from gallery:
 function updateMemeImg(img) {
     gMeme.selectedImgId = img.id
@@ -49,16 +65,25 @@ function findImg(imgId) {
 
 // Increase / decrease font size
 function increaseFontSize() {
-    gMeme.lines[0].size++
+    gMeme.lines[gMeme.selectedLineIdx].size++
 }
 function decreaseFontSize() {
-    gMeme.lines[0].size--
+    gMeme.lines[gMeme.selectedLineIdx].size--
 }
 
 function moveTextUp() {
-    gMeme.lines[0].coordsY++
+    gMeme.lines[gMeme.selectedLineIdx].coordsY++
 }
 
 function moveTextDown() {
-    gMeme.lines[0].coordsY--
+    gMeme.lines[gMeme.selectedLineIdx].coordsY--
+}
+
+function nextTextLine() {
+    let idx = gMeme.selectedLineIdx++
+    if (idx >= gMeme.lines.length - 1) {
+        idx = 0
+        gMeme.selectedLineIdx = 0
+    }
+    return gMeme[idx]
 }

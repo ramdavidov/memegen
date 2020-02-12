@@ -26,10 +26,14 @@
         <div class="editor-tools-container">
             <input class="text-input" type="text" id="fname" name="fname" placeholder="your text goes here"
                 onkeyup="onDrawText()">
+            <button class="switch-line-focus" onclick="onNextTextLine()">Switch line</button>
+            <br />
+            <br />
+            <span>Font size:</span>
             <button class="font-size-button" onclick="onDecreaseFontSize()">-</button>
             <!-- <div class="value-number">${book.rate}</div> -->
             <button class="font-size-button" onclick="onIncreaseFontSize()">+</button>
-
+            <span>Text position:</span>
             <button class="font-size-button" onclick="onMoveTextDown()">-</button>
             <button class="font-size-button" onclick="onMoveTextUp()">+</button>
         </div>
