@@ -44,7 +44,7 @@ function initCanvas() {
     gCtx = gCanvas.getContext('2d')
 }
 
-// Draw the img to the canvas:
+// Draw the img to the canvas afte selecting img:
 function drawImg(imgUrl) {
     var img = new Image()
     img.src = imgUrl
@@ -53,20 +53,8 @@ function drawImg(imgUrl) {
     }
 }
 
-function onNextTextLine() {
-nextTextLine()
-console.log(gMeme.selectedLineIdx)
-updateTextInputValue()
-}
-
-function updateTextInputValue() {
-    const elText = document.querySelector('.text-input')
-    let line = getLineForDisplay()
-    elText.value = line.txt
-
-}
-
 // Meme editor:
+// Draw text as the user types:
 function onDrawText() {
     const elText = document.querySelector('.text-input')
     let elTextValue = elText.value
@@ -98,6 +86,20 @@ function drawText(line) {
     gCtx.textAlign = line.align
     gCtx.fillText(line.txt, line.coordsX, line.coordsY)
     gCtx.strokeText(line.txt, line.coordsX, line.coordsY)
+}
+
+// Switch text lines in the meme editor:
+function onNextTextLine() {
+    nextTextLine()
+    updateTextInputValue()
+}
+
+// Update the input text to show the txt value:
+function updateTextInputValue() {
+    const elText = document.querySelector('.text-input')
+    let line = getLineForDisplay()
+    elText.value = line.txt
+
 }
 
 // call service to increase / decrease font size and draw:
