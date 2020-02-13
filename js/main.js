@@ -48,6 +48,11 @@ function hideMemeEditor() {
     elEditor.classList.remove('flex')
 }
 
+// Toggle menu on mobile:
+function toggleMenu() {
+    document.body.classList.toggle('menu-open')
+}
+
 // Init canvas:
 function initCanvas() {
     gCanvas = document.getElementById('my-canvas')
@@ -132,9 +137,4 @@ function onMoveTextDown() {
 function onMoveTextUp() {
     moveTextUp()
     onDrawText()
-}
-
-// Toggle menu on mobile:
-function toggleMenu() {
-    document.body.classList.toggle('menu-open');
 }
