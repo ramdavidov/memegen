@@ -59,6 +59,13 @@ function initCanvas() {
     gCtx = gCanvas.getContext('2d')
 }
 
+// Download canvas to img:
+function downloadCanvas(elLink) {
+    const data = gCanvas.toDataURL()
+    elLink.href = data
+    elLink.download = 'myCanvas'
+}
+
 // Draw the img to the canvas afte selecting img:
 function drawImg(imgUrl) {
     var img = new Image()
@@ -74,6 +81,7 @@ function onDrawText() {
     const elText = document.querySelector('.text-input')
     let elTextValue = elText.value
     let meme = getCurrMeme()
+    // debugger
     let line = getLineForDisplay()
 
     let LineIdx = meme.selectedLineIdx
@@ -97,7 +105,7 @@ function drawText(line) {
     gCtx.lineWidth = `${line.lineWidth}`
     gCtx.strokeStyle = line.stroke
     gCtx.fillStyle = line.color
-    gCtx.font = `${line.size}px Impact`
+    gCtx.font = `${line.size}px ${line.font}`
     gCtx.textAlign = line.align
     gCtx.fillText(line.txt, line.coordsX, line.coordsY)
     gCtx.strokeText(line.txt, line.coordsX, line.coordsY)
@@ -136,5 +144,40 @@ function onMoveTextDown() {
 
 function onMoveTextUp() {
     moveTextUp()
+    onDrawText()
+}
+
+// Calls service to add a line:
+function onAddLine() {
+    addLine()
+    updateTextInputValue()
+}
+
+// calls service to delete a line and focus on new line:
+function onRemoveLine() {
+    let lineIdx = findCurrLine()
+    clearTextInput()
+    onNextTextLine()
+    removeLine(lineIdx)
+    onDrawText()
+}
+
+// Clears text input after deleteing a text line:
+function clearTextInput() {
+    const elText = document.querySelector('.text-input')
+    elText.value = ''
+}
+// Calls service to change font:
+function onFontChange() {
+    const elFontType = document.querySelector('#font-type').value
+    setFontChange(elFontType)
+    onDrawText()
+}
+
+// Calls service to update the text fill color;
+function onFillColorChange() {
+    const elStrokeColor = document.querySelector('#stroke-color').value
+    const elFillColor = document.querySelector('#fill-color').value
+    setDrawColor(elStrokeColor, elFillColor)
     onDrawText()
 }

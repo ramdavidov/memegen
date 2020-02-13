@@ -37,23 +37,35 @@
         <div class="editor-tools-container">
             <input class="text-input" type="text" id="fname" name="fname" placeholder="your text goes here"
                 onkeyup="onDrawText()">
-            <button class="editor-btn switch-line-focus" onclick="onNextTextLine()"><img src="img/icons/up-and-down-opposite-double-arrows-side-by-side.png" class="edit-icons" /></button>
-            <button class="editor-btn add-line-btn"><img src="img/icons/add.png" class="edit-icons" /></button>
-            <button class="editor-btn remove-line-btn"><img src="img/icons/trash.png" class="edit-icons" /></button>
-            <button class="editor-btn move-line-down-btn" onclick="onMoveTextDown()"><img src="img/icons/down-arrow.png" class="edit-icons" /></button>
-            <button class="editor-btn move-line-up-btn" onclick="onMoveTextUp()"><img src="img/icons/up-arrow.png" class="edit-icons" /></button>
-            <button class="editor-btn text-increase-btn" onclick="onIncreaseFontSize()"><img src="img/icons/increase-font-icon.png" class="edit-icons" /></button>
-            <button class="editor-btn text-decrease-btn" onclick="onDecreaseFontSize()"><img src="img/icons/decrease-font-icon.png" class="edit-icons" /></button>
-            <button class="editor-btn text-align-left-btn"><img src="img/icons/align-to-left.png" class="edit-icons" /></button>
-            <button class="editor-btn text-align-center-btn"><img src="img/icons/center-text-alignment.png" class="edit-icons" /></button>
-            <button class="editor-btn text-align-right-btn"><img src="img/icons/align-to-right.png" class="edit-icons" /></button>
-            <select class="font-pick-btn" id="shape" onchange="onDrawShapeChange()">
-                <option value="impact">Impact</option>
+            <button class="editor-btn switch-line-focus" onclick="onNextTextLine()"><img
+                    src="img/icons/up-and-down-opposite-double-arrows-side-by-side.png" class="edit-icons" /></button>
+            <button class="editor-btn add-line-btn" onclick="onAddLine()"><img src="img/icons/add.png" class="edit-icons" /></button>
+            <button class="editor-btn remove-line-btn" onclick="onRemoveLine()"><img src="img/icons/trash.png" class="edit-icons" /></button>
+            <button class="editor-btn move-line-down-btn" onclick="onMoveTextDown()"><img src="img/icons/down-arrow.png"
+                    class="edit-icons" /></button>
+            <button class="editor-btn move-line-up-btn" onclick="onMoveTextUp()"><img src="img/icons/up-arrow.png"
+                    class="edit-icons" /></button>
+            <button class="editor-btn text-increase-btn" onclick="onIncreaseFontSize()"><img
+                    src="img/icons/increase-font-icon.png" class="edit-icons" /></button>
+            <button class="editor-btn text-decrease-btn" onclick="onDecreaseFontSize()"><img
+                    src="img/icons/decrease-font-icon.png" class="edit-icons" /></button>
+            <button class="editor-btn text-align-left-btn"><img src="img/icons/align-to-left.png"
+                    class="edit-icons" /></button>
+            <button class="editor-btn text-align-center-btn"><img src="img/icons/center-text-alignment.png"
+                    class="edit-icons" /></button>
+            <button class="editor-btn text-align-right-btn"><img src="img/icons/align-to-right.png"
+                    class="edit-icons" /></button>
+            <select class="font-pick-btn" id="font-type" onchange="onFontChange()">
+                <option value="Impact">Impact</option>
+                <option value="Ariel">Arial</option>
+                <option value="Verdana">Verdana</option>
             </select>
-            <button class="editor-btn fill-color"><img src="img/icons/paint-board-and-brush.png" class="edit-icons" /></button>
-            <button class="editor-btn stroke-btn"><img src="img/icons/text-stroke.png" class="edit-icons" /></button>
-            <button class="editor-btn share-btn">share</button>
-            <button class="editor-btn download-btn">download</button>
+            <input type="color" id="fill-color" name="head" value="#000000" class="editor-btn fill-color" onchange="onFillColorChange()">
+            <input type="color" id="stroke-color" name="head" value="#ffffff" class="editor-btn stroke-btn" onchange="onFillColorChange()">
+            <button class="editor-btn share-btn">Share</button>
+            <a href="#" class="editor-btn download-btn clean-link flex justify-center align-items-center"
+                onclick="downloadCanvas(this)" download="">
+                <button class="editor-btn">Download</button></a>
         </div>
     </section>
     <footer class="footer-main flex justify-center">

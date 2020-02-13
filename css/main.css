@@ -102,21 +102,15 @@ body {
 
 .canvas-container {
     margin-right: 10px;
-    /* background-color: rgb(255, 243, 137); */
     margin: 0 auto;
     /* flex-grow: 1; */
 }
-
-/* #my-canvas {
-    background-color: rgb(145, 145, 255);
-} */
 
 /* meme editor: */
 
 .meme-editor-container {
     /* Has flex row from html */
     margin: 0 auto;
-    /* background-color: rgb(113, 227, 255); */
     margin-top: 10px;
     display: none;
     justify-content: space-between;
@@ -124,7 +118,6 @@ body {
 }
 
 .editor-tools-container {
-    /* background-color: rgb(165, 255, 80); */
     display: grid;
     grid-template-columns: repeat(5, 60px);
     grid-template-rows: repeat(5, 60px);
@@ -134,10 +127,10 @@ body {
 
 .editor-btn {
     border: none;
-    background-color: rgb(245, 245, 245);
+    background-color: rgb(190, 220, 255);
     color: #101010;
     font-size: 16px;
-    /* font-family: oxygen-regular; */
+    border-radius: 3px;
 }
 
 .edit-icons {
@@ -212,6 +205,8 @@ body {
 
 .download-btn {
     grid-area: download;
+    cursor: pointer;
+
 }
 
 /* footer */
@@ -293,27 +288,18 @@ body {
 }
 
 @media (max-width: 1240px) {
-    /* body {
-        background-color: rgb(255, 162, 162);
-    } */
     .container {
         max-width: 900px;
     }
 }
 
 @media (max-width: 940px) {
-    /* body {
-        background-color: rgb(145, 255, 255);
-    } */
     .container {
         max-width: 700px;
     }
 }
 
 @media (max-width: 720px) {
-    /* body {
-        background-color: rgb(176, 255, 145);
-    } */
     .container {
         max-width: 350px;
     }

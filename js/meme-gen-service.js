@@ -32,9 +32,10 @@ var gMeme = {
             coordsY: 100,
             size: 40,
             lineWidth: 2,
+            font: 'impact',
             align: 'center',
-            color: 'white',
-            stroke: 'black'
+            color: '#ffffff',
+            stroke: '#000000'
         },
         {
             txt: '',
@@ -42,9 +43,10 @@ var gMeme = {
             coordsY: 400,
             size: 40,
             lineWidth: 2,
+            font: 'impact',
             align: 'center',
-            color: 'white',
-            stroke: 'black'
+            color: '#ffffff',
+            stroke: '#000000'
         }
     ]
 }
@@ -105,4 +107,47 @@ function nextTextLine() {
         gMeme.selectedLineIdx = 0
     }
     return gMeme[idx]
+}
+
+// Splices the line from the lines array:
+function removeLine(idx) {
+    if (gMeme.lines.length = 1) return
+    gMeme.lines.splice(idx, 1)
+}
+
+// finds the curr selected line for remove purposes:
+function findCurrLine() {
+    return gMeme.selectedLineIdx
+}
+
+// create a new line in gMeme:
+function addLine() {
+    _createLine()
+}
+
+// Change the line color properties:
+function setDrawColor(strokeColor, fillColor) {
+    gMeme.lines[gMeme.selectedLineIdx].stroke = strokeColor
+    gMeme.lines[gMeme.selectedLineIdx].color = fillColor
+}
+
+function setFontChange(fontType) {
+    gMeme.lines[gMeme.selectedLineIdx].font = fontType
+}
+
+// Creates a new line in the lines array:
+function _createLine() {
+    let newLine = {
+        txt: '',
+        coordsX: 250,
+        coordsY: 300,
+        size: 40,
+        lineWidth: 2,
+        align: 'center',
+        font: 'Impact',
+        color: 'white',
+        stroke: 'black'
+    }
+        gMeme.lines.push(newLine)
+        gMeme.selectedLineIdx = gMeme.lines.length - 1
 }
