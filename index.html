@@ -10,55 +10,63 @@
 </head>
 
 <body onload="onInit()">
-    <header class="header-main">
-        <nav class="navbar-main flex justify-space-between">
-            <div class="nav-btn title-main flex col justify-center text-align-center">
+    <div class="menu-screen" onclick="toggleMenu()"></div>
+    <header class="header-main flex justify-center">
+        <nav class="navbar-main container flex justify-space-between">
+            <div class="title-main flex col justify-center text-align-center">
                 <h1 class="logo">Memegen</h1>
             </div>
-            <a href="#" class="nav-btn gallery-link flex col justify-center text-align-center"><span class="my-memes">My Memes</span></a>
-            <a href="#" class="nav-btn about-link flex col justify-center text-align-center"><span class="about">About</span></a>
+            <div class="links-container flex">
+                <a href="#" onclick="hideMemeEditor()"
+                    class="nav-btn gallery-link flex col justify-center text-align-center">
+                    <span class="my-memes">Gallery</span></a>
+                <a href="#" class="nav-btn about-link flex col justify-center text-align-center">
+                    <span class="about">About</span></a>
+            </div>
+            <button class="menu-btn" onclick="toggleMenu()">☰</button>
         </nav>
     </header>
-
-
-    <section class="memes-img-container">
+    <!--  -->
+    <section class="memes-img-container contaier flex justify-center">
         <div class="memes-grid-container grid container">
-
         </div>
     </section>
-    <section class="meme-editor-container container flex">
-        <div class="canvas-container">
+    <!--  -->
+    <section class="meme-editor-container container">
+        <div class="canvas-container flex justify-center">
             <canvas id="my-canvas" height="450" width="450"></canvas>
         </div>
+        <!--  -->
         <div class="editor-tools-container">
             <input class="text-input" type="text" id="fname" name="fname" placeholder="your text goes here"
                 onkeyup="onDrawText()">
             <button class="switch-line-focus" onclick="onNextTextLine()">Switch line</button>
-            <br />
-            <br />
-            <span>Font size:</span>
-            <button class="font-size-button" onclick="onDecreaseFontSize()">-</button>
-            <!-- <div class="value-number">${book.rate}</div> -->
-            <button class="font-size-button" onclick="onIncreaseFontSize()">+</button>
-            <span>Text position:</span>
-            <button class="font-size-button" onclick="onMoveTextDown()">-</button>
-            <button class="font-size-button" onclick="onMoveTextUp()">+</button>
-        </div>
+            <button class="add-line-btn">add</button>
+            <button class="remove-line-btn">remove</button>
+            <button class="move-line-down-btn" onclick="onMoveTextDown()">down</button>
+            <button class="move-line-up-btn" onclick="onMoveTextUp()">up</button>
+            <button class="text-increase-btn" onclick="onIncreaseFontSize()">size+</button>
+            <button class=".text-decrease-btn" onclick="onDecreaseFontSize()">size-</button>
+            <button class="text-align-left-btn">align-left</button>
+            <button class="text-align-center-btn">align-center</button>
+            <button class="text-align-right-btn">align-right</button>
+            <select class="font-pick-btn" id="shape" onchange="onDrawShapeChange()">
+                <option value="impact">Impact</option>
+            </select>
+            <input class="fill-color" type="color" id="head" name="head" value="#e66465">
+            <button class="stroke-btn">stroke</button>
+            <button class="share-btn">share</button>
+            <button class="download-btn">download</button>
         </div>
     </section>
-
-
-
-
-
-
-
-
-
-
-
-    <footer class="footer-main"></footer>
-
+    <!--  -->
+    <footer class="footer-main flex justify-center">
+        <div class="footer-content container flex col justify-space-between align-items-center">
+            <div class="logo">Memegen</div>
+            <small class="rights">Coffee Rights 2020</small>
+        </div>
+    </footer>
+    <!--  -->
     <script src="js/utils.js"></script>
     <script src="js/storage-service.js"></script>
     <script src="js/meme-gen-service.js"></script>

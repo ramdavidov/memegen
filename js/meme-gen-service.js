@@ -88,12 +88,13 @@ function decreaseFontSize() {
     gMeme.lines[gMeme.selectedLineIdx].size--
 }
 
+// Move text row up or down:
 function moveTextUp() {
-    gMeme.lines[gMeme.selectedLineIdx].coordsY++
+    gMeme.lines[gMeme.selectedLineIdx].coordsY--
 }
 
 function moveTextDown() {
-    gMeme.lines[gMeme.selectedLineIdx].coordsY--
+    gMeme.lines[gMeme.selectedLineIdx].coordsY++
 }
 
 // Switches focus between lines:

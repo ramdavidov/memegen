@@ -35,7 +35,17 @@ function setCurrMeme(img) {
 
 // Show the meme editor:
 function showMemeEditor() {
-    console.log('I will open the memeEditor')
+    const elEditor = document.querySelector('.meme-editor-container')
+    const elImgGallery = document.querySelector('.memes-img-container')
+    elEditor.classList.add('flex')
+    elImgGallery.classList.remove('flex')
+}
+// Hide the meme editor:
+function hideMemeEditor() {
+    const elEditor = document.querySelector('.meme-editor-container')
+    const elImgGallery = document.querySelector('.memes-img-container')
+    elImgGallery.classList.add('flex')
+    elEditor.classList.remove('flex')
 }
 
 // Init canvas:
@@ -122,4 +132,9 @@ function onMoveTextDown() {
 function onMoveTextUp() {
     moveTextUp()
     onDrawText()
+}
+
+// Toggle menu on mobile:
+function toggleMenu() {
+    document.body.classList.toggle('menu-open');
 }
