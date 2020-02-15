@@ -84,7 +84,7 @@
 
 .footer-content {
     color: aliceblue;
-    height: 160px;
+    height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
