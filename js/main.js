@@ -25,6 +25,7 @@ function onSelectImg(imgId) {
     let imgUrl = img.url
     initCanvas()
     drawImg(imgUrl)
+    getDefaultLinePos()
     showMemeEditor()
 }
 
@@ -57,20 +58,47 @@ function toggleMenu() {
 function initCanvas() {
     gCanvas = document.getElementById('my-canvas')
     gCtx = gCanvas.getContext('2d')
+    setCanvasSize()
 }
 
-// function downloadCanvas(elLink) {
-//     onDrawText(false)
-//     setTimeout(() => {
-//         const data = gCanvas.toDataURL()
-//         elLink.href = data
-//         elLink.download = 'myCanvas'
-//     }, 1000)
-// }
+// Changes canvas size based on window size (for mobile):
+function setCanvasSize() {
+    if (window.innerWidth < 720) {
+        // Finds the divider to keep image ratio:
+        let heightDivider = gCanvas.width / window.innerWidth
+
+        gCanvas.width = window.innerWidth
+        gCanvas.height /= heightDivider
+    }
+}
+
+function getDefaultLinePos() {
+    setDefaultLinePos(gCanvas.width, gCanvas.height)
+}
+
+// Removes focus frame before downloading meme:
+function onShareSave() {
+    onDrawText(false)
+    toggleConfirmBtn()
+
+    setTimeout(() => {
+        const elSaveShareModal = document.querySelector('.confirm-btn')
+        elSaveShareModal.classList.remove('show-btn')
+    }, 2000)
+}
+
+// Displays confirm message for downloading meme:
+function toggleConfirmBtn() {
+    const elSaveShareModal = document.querySelector('.confirm-btn')
+    elSaveShareModal.classList.toggle('show-btn')
+}
+
+// Downloads the canvas(Meme)
 function downloadCanvas(elLink) {
     const data = gCanvas.toDataURL()
     elLink.href = data
     elLink.download = 'myCanvas'
+    toggleConfirmBtn()
 }
 
 // Draw the img to the canvas afte selecting img:
@@ -134,9 +162,9 @@ function onLineClicked(ev) {
     let meme = getCurrMeme()
     let lineIdx = 0
     meme.lines.find(line => {
-        if (offsetX > 0 && 
+        if (offsetX > 0 &&
             offsetX < gCanvas.width &&
-            offsetY > line.coordsY - line.size && 
+            offsetY > line.coordsY - line.size &&
             offsetY < line.coordsY) {
             setSelectedLineIdx(lineIdx)
             setLineVals()

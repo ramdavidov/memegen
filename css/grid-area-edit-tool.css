@@ -8,7 +8,7 @@
     "switch-line add-line remove-line move-line-down move-line-up" 
     "text-increase text-decrease align-left align-center align-right" 
     "font-pick font-pick font-pick fill-color text-stroke" 
-    "share share . download download";
+    "download download download confirm confirm";
 }
 
 .text-input {
@@ -67,11 +67,12 @@
     grid-area: text-stroke;
 }
 
-.share-btn {
-    grid-area: share;
-}
-
 .download-btn {
     grid-area: download;
     cursor: pointer;
 }
+
+.confirm-btn {
+    grid-area: confirm;
+}
+

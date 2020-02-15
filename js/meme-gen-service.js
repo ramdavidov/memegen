@@ -73,7 +73,7 @@ function getCurrLineIdx() {
 }
 
 // Returns the idx of the selected line:
-function setSelectedLineIdx(idx){
+function setSelectedLineIdx(idx) {
     gMeme.selectedLineIdx = idx
 }
 
@@ -103,21 +103,37 @@ function findImg(imgId) {
     return img
 }
 
+// Sets the default X,Y position of the lines:
+function setDefaultLinePos(width, height) {
+    let idx = 0
+    gMeme.lines.forEach(line => {
+        line.coordsX = Math.floor(width / 2)
+        if (!idx) {
+            line.coordsY = line.size + 10
+        } else if (idx === 1) {
+            line.coordsY = height - (line.size / 2)
+        } else {
+            line.coordsY = Math.floor(height / 2) + line.size
+        }
+        idx++
+    })
+}
+
 // Increase / decrease font size
 function increaseFontSize() {
-    gMeme.lines[gMeme.selectedLineIdx].size++
+    gMeme.lines[gMeme.selectedLineIdx].size += 2
 }
 function decreaseFontSize() {
-    gMeme.lines[gMeme.selectedLineIdx].size--
+    gMeme.lines[gMeme.selectedLineIdx].size -= 2
 }
 
 // Move text row up or down:
 function moveTextUp() {
-    gMeme.lines[gMeme.selectedLineIdx].coordsY--
+    gMeme.lines[gMeme.selectedLineIdx].coordsY -= 2
 }
 
 function moveTextDown() {
-    gMeme.lines[gMeme.selectedLineIdx].coordsY++
+    gMeme.lines[gMeme.selectedLineIdx].coordsY += 2
 }
 
 // Switches focus between lines:

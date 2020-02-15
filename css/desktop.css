@@ -74,8 +74,6 @@
 /* footer: */
 
 .footer-main {
-    /* position: absolute; */
-    /* position: block; */
     position: fixed;
     bottom: 0px;
     width: 100%;
@@ -129,14 +127,12 @@
 /* meme creator: */
 
 .meme-creator-container {
-    background-color: #ffd3d3;
     display: none;
     /* GETS FLEX AFTER SELECTING AN IMGAE(JS) */
     justify-content: center;
 }
 
 .meme-creator-content {
-    background-color: #ff9595;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -148,18 +144,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #1eff00;
-}
-
-#my-canvas {
-    background-color: #0011ff;
 }
 
 /* edit-tools: */
-
-.editor-tools-container {
-    background-color: rgb(255, 43, 43);
-}
 
 .editor-btn {
     border: none;
@@ -174,9 +161,24 @@
 
 .editor-btn {
     cursor: pointer;
+    transition: background-color .3s;
 }
 
-.download-btn, .share-btn {
+.editor-btn:hover {
+    cursor: pointer;
+    background-color: #0099ff;
+}
+
+.trash-icon:hover {
+    background-color: #ff5e00;
+}
+
+.fill-color, .stroke-btn {
+    width: 60px;
+    height: 60px;
+}
+
+.download-btn, .confirm-btn, .share-btn {
     font-family: Oxygen-Bold;
     font-size: 1.2rem;
     display: flex;
@@ -184,17 +186,35 @@
     align-items: center;
 }
 
+.confirm-btn {
+    display: none;
+    background-color: #17c500;
+    transition: background-color .3s;
+}
+
+.confirm-btn:hover {
+    background-color: #1beb00;
+}
+
 .text-input[type="text"] {
-    /* font-family: Oxygen-Bold; */
     font-size: 1.25rem;
+}
+
+.save-share-btn {
+    font-size: 1.25rem;;
+}
+
+.save-share-modal {
+    background-color: #fafafa;
+    display: none;
+    position: fixed;
+    transform: translate(-50%, -50%);
 }
 
 /* helpers: */
 
 .container {
     width: 1200px;
-    border-inline-start: solid #1ab5ed 1px;
-    border-inline-end: solid #1ab5ed 1px;
 }
 
 .flex {
@@ -205,3 +225,6 @@
     display: grid;
 }
 
+.show-btn {
+    display: flex;
+}

@@ -28,12 +28,12 @@
 
 .logo-txt {
     font-family: Montserrat-Bold;
-    font-size: 1.125rem;
+    font-size: 1.5rem;
     text-transform: uppercase;
 }
 
 .logo-img {
-    height: 30px;
+    height: 38px;
     margin-inline-end: 6px;
     margin-bottom: 3px;
 }
@@ -84,15 +84,8 @@
 
 /* meme creator */
 .meme-creator-content {
-    background-color: #9a4dff;
     flex-direction: column;
     margin-bottom: 200px;
-}
-
-/* canvas: */
-#my-canvas {
-    width: 350px;
-    height: 350px;
 }
 
 /* editor tools: */
@@ -104,3 +97,11 @@
     margin-bottom: 10px;
 }
 
+.fill-color, .stroke-btn {
+    width: 50px;
+    height: 50px;
+}
+
+.save-share-btn {
+    font-size: 1rem;;
+}
