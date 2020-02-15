@@ -35,14 +35,14 @@ function setCurrMeme(img) {
 
 // Show the meme editor:
 function showMemeEditor() {
-    const elEditor = document.querySelector('.meme-editor-container')
+    const elEditor = document.querySelector('.meme-creator-container')
     const elImgGallery = document.querySelector('.memes-img-container')
     elEditor.classList.add('flex')
     elImgGallery.classList.remove('flex')
 }
 // Hide the meme editor:
 function hideMemeEditor() {
-    const elEditor = document.querySelector('.meme-editor-container')
+    const elEditor = document.querySelector('.meme-creator-container')
     const elImgGallery = document.querySelector('.memes-img-container')
     elImgGallery.classList.add('flex')
     elEditor.classList.remove('flex')
@@ -59,7 +59,14 @@ function initCanvas() {
     gCtx = gCanvas.getContext('2d')
 }
 
-// Download canvas to img:
+// function downloadCanvas(elLink) {
+//     onDrawText(false)
+//     setTimeout(() => {
+//         const data = gCanvas.toDataURL()
+//         elLink.href = data
+//         elLink.download = 'myCanvas'
+//     }, 1000)
+// }
 function downloadCanvas(elLink) {
     const data = gCanvas.toDataURL()
     elLink.href = data
@@ -77,27 +84,27 @@ function drawImg(imgUrl) {
 
 // Meme editor:
 // Draw text as the user types:
-function onDrawText() {
-    const elText = document.querySelector('.text-input')
-    let elTextValue = elText.value
+function onDrawText(addFocusLine = true) {
+    updateCurrLineTxt()
+    let img = new Image()
     let meme = getCurrMeme()
-    // debugger
-    let line = getLineForDisplay()
-
-    let LineIdx = meme.selectedLineIdx
-    line.txt = elTextValue
-
-    var img = new Image()
     img.src = meme.selectedImgUrl
 
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
-        drawText(line)
-        for (var i = 0; i < meme.lines.length; i++) {
-            if (i === LineIdx) continue
-            drawText(meme.lines[i])
-        }
+        meme.lines.forEach(line => {
+            drawText(line)
+            if (addFocusLine) drawLineFocus(line)
+        })
     }
+}
+
+// Handles changes to curr line from DOM to Modal:
+function updateCurrLineTxt() {
+    const elText = document.querySelector('.text-input')
+    let elTextValue = elText.value
+    let line = getCurrLine()
+    line.txt = elTextValue // MAYBE: this invokes rules of MVC?
 }
 
 // Draw Text according to given params:
@@ -111,18 +118,70 @@ function drawText(line) {
     gCtx.strokeText(line.txt, line.coordsX, line.coordsY)
 }
 
+// Draw focus (mark) for the current line:
+function drawLineFocus(line) {
+    if (line !== getCurrLine()) return
+    // let textArea = gCtx.measureText(line.txt)
+    gCtx.beginPath()
+    gCtx.rect(1, line.coordsY - line.size, gCanvas.width - 2, line.size)
+    gCtx.strokeStyle = '#FFFFFF'
+    gCtx.stroke()
+}
+
+// Selects the line that the user clicks on and gives it focus:
+function onLineClicked(ev) {
+    var { offsetX, offsetY } = ev
+    let meme = getCurrMeme()
+    let lineIdx = 0
+    meme.lines.find(line => {
+        if (offsetX > 0 && 
+            offsetX < gCanvas.width &&
+            offsetY > line.coordsY - line.size && 
+            offsetY < line.coordsY) {
+            setSelectedLineIdx(lineIdx)
+            setLineVals()
+            onDrawText()
+            setIsLineDrag(true)
+        }
+        lineIdx++
+    })
+}
+
+// Invokes dragging option on mouseup:
+function onCancelDrag() {
+    setIsLineDrag(false)
+}
+
+// Updated the coords of the line to the service:
+function onLineDrag(ev) {
+    let meme = getCurrMeme()
+    if (!meme.isDrag) return
+    var { offsetX, offsetY } = ev
+    let line = getCurrLine()
+    setLineCoords(line, offsetX, offsetY)
+    onDrawText()
+}
+
 // Switch text lines in the meme editor:
 function onNextTextLine() {
     nextTextLine()
-    updateTextInputValue()
+    setLineVals()
+    onDrawText()
+    // Handles focus (mark) for the next line:
+    let currLine = getCurrLine()
+    drawLineFocus(currLine)
 }
 
-// Update the input text to show the txt value:
-function updateTextInputValue() {
+// Updates the input text to show the txt value:
+function setLineVals() {
     const elText = document.querySelector('.text-input')
-    let line = getLineForDisplay()
-    elText.value = line.txt
+    const elStrokeColor = document.querySelector('#stroke-color')
+    const elFillColor = document.querySelector('#fill-color')
 
+    let line = getCurrLine()
+    elText.value = line.txt
+    elStrokeColor.value = line.stroke
+    elFillColor.value = line.color
 }
 
 // call service to increase / decrease font size and draw:
@@ -136,12 +195,19 @@ function onDecreaseFontSize() {
     onDrawText()
 }
 
+// Calls service to update alignment type and position X:
+function onChangeAlign(alignTo) {
+    let canvasWidth = gCanvas.width
+    changeAlign(alignTo, canvasWidth)
+    onDrawText()
+}
+
+
 // call service to move text up/down and:
 function onMoveTextDown() {
     moveTextDown()
     onDrawText()
 }
-
 function onMoveTextUp() {
     moveTextUp()
     onDrawText()
@@ -150,15 +216,20 @@ function onMoveTextUp() {
 // Calls service to add a line:
 function onAddLine() {
     addLine()
-    updateTextInputValue()
+    setLineVals()
+    onDrawText()
+    // Adds focus (mark) to the new line
+    let currLine = getCurrLine()
+    drawLineFocus(currLine)
 }
 
 // calls service to delete a line and focus on new line:
 function onRemoveLine() {
-    let lineIdx = findCurrLine()
+    let lineIdx = getCurrLineIdx()
     clearTextInput()
-    onNextTextLine()
     removeLine(lineIdx)
+    resetSelectedLine()
+    setLineVals()
     onDrawText()
 }
 
@@ -175,7 +246,7 @@ function onFontChange() {
 }
 
 // Calls service to update the text fill color;
-function onFillColorChange() {
+function onColorChange() {
     const elStrokeColor = document.querySelector('#stroke-color').value
     const elFillColor = document.querySelector('#fill-color').value
     setDrawColor(elStrokeColor, elFillColor)

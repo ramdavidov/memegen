@@ -25,12 +25,13 @@ var gMeme = {
     selectedImgId: 5,
     selectedImgUrl: '',
     selectedLineIdx: 0,
+    isDrag: false,
     lines: [
         {
             txt: '',
             coordsX: 250,
             coordsY: 100,
-            size: 40,
+            size: 50,
             lineWidth: 2,
             font: 'impact',
             align: 'center',
@@ -41,7 +42,7 @@ var gMeme = {
             txt: '',
             coordsX: 250,
             coordsY: 400,
-            size: 40,
+            size: 50,
             lineWidth: 2,
             font: 'impact',
             align: 'center',
@@ -50,7 +51,6 @@ var gMeme = {
         }
     ]
 }
-
 
 // Return the gImgs for displauy:
 function getMemesForDisplay() {
@@ -62,9 +62,30 @@ function getCurrMeme() {
     return gMeme
 }
 
-// Returns the requested line for drawing purposes:
-function getLineForDisplay() {
+// Return current line to controller:
+function getCurrLine() {
     return gMeme.lines[gMeme.selectedLineIdx]
+}
+
+// Returns the curr selected line for remove purposes:
+function getCurrLineIdx() {
+    return gMeme.selectedLineIdx
+}
+
+// Returns the idx of the selected line:
+function setSelectedLineIdx(idx){
+    gMeme.selectedLineIdx = idx
+}
+
+// Toggles allowing to drag line or not:
+function setIsLineDrag(isLineDrag) {
+    gMeme.isDrag = isLineDrag
+}
+
+// Sets the line coords based on DOM mouse position
+function setLineCoords(line, PosX, PosY) {
+    line.coordsX = PosX
+    line.coordsY = PosY
 }
 
 
@@ -101,23 +122,38 @@ function moveTextDown() {
 
 // Switches focus between lines:
 function nextTextLine() {
-    let idx = gMeme.selectedLineIdx++
-    if (idx >= gMeme.lines.length - 1) {
-        idx = 0 // probably not needed
+    gMeme.selectedLineIdx++
+    if (gMeme.selectedLineIdx >= gMeme.lines.length) {
         gMeme.selectedLineIdx = 0
     }
-    return gMeme[idx]
+}
+
+// resets the selectedLineIdx to 0 after removing a line
+function resetSelectedLine() {
+    gMeme.selectedLineIdx = 0
 }
 
 // Splices the line from the lines array:
 function removeLine(idx) {
-    if (gMeme.lines.length = 1) return
+    if (!gMeme.lines.length) return
     gMeme.lines.splice(idx, 1)
 }
 
-// finds the curr selected line for remove purposes:
-function findCurrLine() {
-    return gMeme.selectedLineIdx
+// Switch align type and update x position
+function changeAlign(alignTo, canvasWidth) {
+    let line = getCurrLine()
+    line.align = alignTo
+    switch (alignTo) {
+        case 'left':
+            line.coordsX = 1
+            break
+        case 'center':
+            line.coordsX = Math.floor(canvasWidth / 2)
+            break
+        case 'right':
+            line.coordsX = (canvasWidth - 1)
+            break
+    }
 }
 
 // create a new line in gMeme:
@@ -131,9 +167,11 @@ function setDrawColor(strokeColor, fillColor) {
     gMeme.lines[gMeme.selectedLineIdx].color = fillColor
 }
 
+// Change the line font type:
 function setFontChange(fontType) {
     gMeme.lines[gMeme.selectedLineIdx].font = fontType
 }
+
 
 // Creates a new line in the lines array:
 function _createLine() {
@@ -141,13 +179,13 @@ function _createLine() {
         txt: '',
         coordsX: 250,
         coordsY: 300,
-        size: 40,
+        size: 50,
         lineWidth: 2,
         align: 'center',
         font: 'Impact',
-        color: 'white',
-        stroke: 'black'
+        color: '#ffffff',
+        stroke: '#000000'
     }
-        gMeme.lines.push(newLine)
-        gMeme.selectedLineIdx = gMeme.lines.length - 1
+    gMeme.lines.push(newLine)
+    gMeme.selectedLineIdx = gMeme.lines.length - 1
 }

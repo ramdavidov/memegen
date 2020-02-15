@@ -5,75 +5,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="img/favicon-32x32.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/grid-area-edit-tool.css">
     <link rel="stylesheet" href="css/main.css">
-    <title>MEMEGEN | Rami</title>
+    <title>Memedream | Rami</title>
 </head>
 
 <body onload="onInit()">
     <div class="menu-screen" onclick="toggleMenu()"></div>
-    <header class="header-main flex justify-center">
-        <nav class="navbar-main container flex justify-space-between">
-            <div class="title-main flex col justify-center text-align-center">
-                <h1 class="logo">Memegen</h1>
+    <header class="header-main">
+        <nav class="navbar-main container">
+            <div class="logo-main-container">
+                <img class="logo-img" src="img/cloud-logo.png">
+                <h1 class="logo-txt">Memedream</h1>
             </div>
-            <div class="links-container flex">
-                <a href="#" onclick="hideMemeEditor()"
-                    class="nav-btn gallery-link flex col justify-center text-align-center">
-                    <span class="my-memes">Gallery</span></a>
-                <a href="#" class="nav-btn about-link flex col justify-center text-align-center">
+            <div class="links-container">
+                <a href="#" class="nav-btn" onclick="hideMemeEditor()" onclick="hideMemeEditor()">
+                    <span class="image-gallery">Gallery</span></a>
+                <a href="#" class="nav-btn">
                     <span class="about">About</span></a>
             </div>
             <button class="menu-btn" onclick="toggleMenu()">☰</button>
         </nav>
     </header>
-    <section class="memes-img-container contaier flex justify-center">
-        <div class="memes-grid-container grid container">
-        </div>
-    </section>
-    <section class="meme-editor-container container">
-        <div class="canvas-container flex justify-center">
-            <canvas id="my-canvas" height="500" width="500"></canvas>
-        </div>
-        <div class="editor-tools-container">
-            <input class="text-input" type="text" id="fname" name="fname" placeholder="your text goes here"
-                onkeyup="onDrawText()">
-            <button class="editor-btn switch-line-focus" onclick="onNextTextLine()"><img
-                    src="img/icons/up-and-down-opposite-double-arrows-side-by-side.png" class="edit-icons" /></button>
-            <button class="editor-btn add-line-btn" onclick="onAddLine()"><img src="img/icons/add.png" class="edit-icons" /></button>
-            <button class="editor-btn remove-line-btn" onclick="onRemoveLine()"><img src="img/icons/trash.png" class="edit-icons" /></button>
-            <button class="editor-btn move-line-down-btn" onclick="onMoveTextDown()"><img src="img/icons/down-arrow.png"
-                    class="edit-icons" /></button>
-            <button class="editor-btn move-line-up-btn" onclick="onMoveTextUp()"><img src="img/icons/up-arrow.png"
-                    class="edit-icons" /></button>
-            <button class="editor-btn text-increase-btn" onclick="onIncreaseFontSize()"><img
-                    src="img/icons/increase-font-icon.png" class="edit-icons" /></button>
-            <button class="editor-btn text-decrease-btn" onclick="onDecreaseFontSize()"><img
-                    src="img/icons/decrease-font-icon.png" class="edit-icons" /></button>
-            <button class="editor-btn text-align-left-btn"><img src="img/icons/align-to-left.png"
-                    class="edit-icons" /></button>
-            <button class="editor-btn text-align-center-btn"><img src="img/icons/center-text-alignment.png"
-                    class="edit-icons" /></button>
-            <button class="editor-btn text-align-right-btn"><img src="img/icons/align-to-right.png"
-                    class="edit-icons" /></button>
-            <select class="font-pick-btn" id="font-type" onchange="onFontChange()">
-                <option value="Impact">Impact</option>
-                <option value="Ariel">Arial</option>
-                <option value="Verdana">Verdana</option>
-            </select>
-            <input type="color" id="fill-color" name="head" value="#000000" class="editor-btn fill-color" onchange="onFillColorChange()">
-            <input type="color" id="stroke-color" name="head" value="#ffffff" class="editor-btn stroke-btn" onchange="onFillColorChange()">
-            <button class="editor-btn share-btn">Share</button>
-            <a href="#" class="editor-btn download-btn clean-link flex justify-center align-items-center"
-                onclick="downloadCanvas(this)" download="">
-                <button class="editor-btn">Download</button></a>
-        </div>
-    </section>
-    <footer class="footer-main flex justify-center">
-        <div class="footer-content container flex col justify-space-between align-items-center">
-            <div class="logo">Memegen</div>
+    <main>
+        <section class="memes-img-container flex">
+            <div class="memes-grid-container grid container">
+            </div>
+        </section>
+        <section class="meme-creator-container">
+            <div class="meme-creator-content container">
+                <div class="canvas-container">
+                    <canvas id="my-canvas" height="500" width="500" onmousedown="onLineClicked(event)" onmouseup="onCancelDrag()" onmousemove="onLineDrag(event)" onmouseout="onCancelDrag()"></canvas>
+                </div>
+                <div class="editor-tools-container">
+                    <input class="text-input" type="text" id="fname" name="fname" placeholder="your text goes here"
+                        onkeyup="onDrawText()">
+                    <button class="editor-btn switch-line-focus" onclick="onNextTextLine()"><img
+                            src="img/icons/up-and-down-opposite-double-arrows-side-by-side.png" class="edit-icons" /></button>
+                    <button class="editor-btn add-line-btn" onclick="onAddLine()"><img src="img/icons/add.png" class="edit-icons" /></button>
+                    <button class="editor-btn remove-line-btn" onclick="onRemoveLine()"><img src="img/icons/trash.png" class="edit-icons" /></button>
+                    <button class="editor-btn move-line-down-btn" onclick="onMoveTextDown()"><img src="img/icons/down-arrow.png"
+                            class="edit-icons" /></button>
+                    <button class="editor-btn move-line-up-btn" onclick="onMoveTextUp()"><img src="img/icons/up-arrow.png"
+                            class="edit-icons" /></button>
+                    <button class="editor-btn text-increase-btn" onclick="onIncreaseFontSize()"><img
+                            src="img/icons/increase-font-icon.png" class="edit-icons" /></button>
+                    <button class="editor-btn text-decrease-btn" onclick="onDecreaseFontSize()"><img
+                            src="img/icons/decrease-font-icon.png" class="edit-icons" /></button>
+                    <button class="editor-btn text-align-left-btn" onclick="onChangeAlign('left')"><img src="img/icons/align-to-left.png"
+                            class="edit-icons" /></button>
+                    <button class="editor-btn text-align-center-btn" onclick="onChangeAlign('center')"><img src="img/icons/center-text-alignment.png"
+                            class="edit-icons" /></button>
+                    <button class="editor-btn text-align-right-btn" onclick="onChangeAlign('right')"><img src="img/icons/align-to-right.png"
+                            class="edit-icons" /></button>
+                    <select class="font-pick-btn" id="font-type" onchange="onFontChange()">
+                        <option value="Impact">Impact</option>
+                        <option value="Ariel">Arial</option>
+                        <option value="Verdana">Verdana</option>
+                    </select>
+                    <input type="color" id="fill-color" name="head" value="#ffffff" class="editor-btn fill-color" onchange="onColorChange()">
+                    <input type="color" id="stroke-color" name="head" value="#000000" class="editor-btn stroke-btn" onchange="onColorChange()">
+
+                    
+                    <!-- <button class="editor-btn share-btn">Share</button> -->
+                    <!-- <button class="editor-btn share-btn">Share</button> -->
+                    
+                    <a href="#" class="editor-btn share-btn clean-link"
+                    onclick="downloadCanvas(this)" download="">
+                    <span class="share-text">Share</span></a>
+
+
+                    <a href="#" class="editor-btn download-btn clean-link"
+                        onclick="downloadCanvas(this)" download="">
+                        <span class="download-text">Download</span></a>
+                </div>
+            </div>
+
+    </main>
+    <footer class="footer-main">
+        <div class="footer-content container">
+            <div class="logo-footer-container">
+                <img class="logo-img" src="img/cloud-logo.png">
+                <h1 class="logo-txt">Memedream</h1>
+            </div>
             <small class="rights">Coffee Rights 2020</small>
         </div>
     </footer>
+
     <script src="js/utils.js"></script>
     <script src="js/storage-service.js"></script>
     <script src="js/meme-gen-service.js"></script>

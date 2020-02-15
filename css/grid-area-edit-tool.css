@@ -1,0 +1,77 @@
+.editor-tools-container {
+    display: grid;
+    grid-template-columns: repeat(5, 60px);
+    grid-template-rows: repeat(5, 60px);
+    gap: 18px;
+    grid-template-areas: 
+    "text-input text-input text-input text-input text-input"
+    "switch-line add-line remove-line move-line-down move-line-up" 
+    "text-increase text-decrease align-left align-center align-right" 
+    "font-pick font-pick font-pick fill-color text-stroke" 
+    "share share . download download";
+}
+
+.text-input {
+    grid-area: text-input;
+}
+
+.switch-line-focus {
+    grid-area: switch-line;
+}
+
+.add-line-btn {
+    grid-area: add-line;
+}
+
+.remove-line-btn {
+    grid-area: remove-line;
+}
+
+.move-line-down-btn {
+    grid-area: move-line-down;
+}
+
+.move-line-up-btn {
+    grid-area: move-line-up;
+}
+
+.text-increase-btn {
+    grid-area: text-increase;
+}
+
+.text-decrease-btn {
+    grid-area: text-decrease;
+}
+
+.text-align-left-btn {
+    grid-area: align-left;
+}
+
+.text-align-center-btn {
+    grid-area: align-center;
+}
+
+.text-align-right-btn {
+    grid-area: align-right;
+}
+
+.font-pick-btn {
+    grid-area: font-pick;
+}
+
+.fill-color-btn {
+    grid-area: fill-color;
+}
+
+.stroke-btn {
+    grid-area: text-stroke;
+}
+
+.share-btn {
+    grid-area: share;
+}
+
+.download-btn {
+    grid-area: download;
+    cursor: pointer;
+}
