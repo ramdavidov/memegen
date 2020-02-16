@@ -63,3 +63,10 @@ function showTimer() {
 //     elCanvas.style.cursor = cursorType
 // }
 
+
+// function testEventListener() {
+//     const memeCanvas = document.querySelector('.meme-canvas')
+//     memeCanvas.addEventListener('click mousemove', () => {
+//         console.log('hello')
+//     })
+// }

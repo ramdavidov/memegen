@@ -173,34 +173,48 @@ function drawLineFocus(line) {
 
 // Selects the line that the user clicks on and gives it focus:
 function onLineClicked(ev) {
+    ev.preventDefault()
+    // console.log('TOUCHSTART / MOUSEDOWN:', ev)
     var { offsetX, offsetY } = ev
+    if (ev.type === 'touchstart') {
+        var rect = ev.target.getBoundingClientRect()
+        offsetX = ev.targetTouches[0].pageX - rect.left
+        offsetY = ev.targetTouches[0].pageY - rect.top
+    }
     let meme = getCurrMeme()
     meme.lines.find((line, index) => {
         if (offsetX > 0 &&
             offsetX < gCanvas.width &&
             offsetY > line.coordsY - line.size &&
             offsetY < line.coordsY) {
-                setSelectedLineIdx(index)
-                setLineVals()
-                onDrawText()
-                setIsLineDrag(true)
+            setSelectedLineIdx(index)
+            setLineVals()
+            onDrawText()
+            setIsLineDrag(true)
         }
     })
+}
+
+// Updated the coords of the line to the service:
+function onLineDrag(ev) {
+    ev.preventDefault()
+    // console.log('TOUCHMOVE / MOUSEMOVE:', ev)
+    let meme = getCurrMeme()
+    if (!meme.isDrag) return
+    var { offsetX, offsetY } = ev
+    if (ev.type === 'touchmove') {
+        var rect = ev.target.getBoundingClientRect()
+        offsetX = ev.targetTouches[0].pageX - rect.left
+        offsetY = ev.targetTouches[0].pageY - rect.top
+    }
+    let line = getCurrLine()
+    setLineCoords(line, offsetX, offsetY)
+    onDrawText()
 }
 
 // Invokes dragging option on mouseup:
 function onCancelDrag() {
     setIsLineDrag(false)
-}
-
-// Updated the coords of the line to the service:
-function onLineDrag(ev) {
-    let meme = getCurrMeme()
-    if (!meme.isDrag) return
-    var { offsetX, offsetY } = ev
-    let line = getCurrLine()
-    setLineCoords(line, offsetX, offsetY)
-    onDrawText()
 }
 
 // Switch text lines in the meme editor:

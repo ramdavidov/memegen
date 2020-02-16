@@ -35,8 +35,10 @@
         <section class="meme-creator-container">
             <div class="meme-creator-content container">
                 <div class="canvas-container">
-                    <canvas id="my-canvas" height="500" width="500" onmousedown="onLineClicked(event)"
-                        onmouseup="onCancelDrag()" onmousemove="onLineDrag(event)" onmouseout="onCancelDrag()"></canvas>
+                    <canvas id="my-canvas" class="meme-canvas" height="500" width="500"
+                        onmousedown="onLineClicked(event)" onmouseup="onCancelDrag()" onmousemove="onLineDrag(event)"
+                        onmouseout="onCancelDrag()" ontouchstart="onLineClicked(event)" ontouchmove="onLineDrag(event)"
+                        ontouchend="onCancelDrag()"></canvas>
                 </div>
                 <div class="editor-tools-container">
                     <input class="text-input" type="text" id="fname" name="fname" placeholder="your text goes here"
@@ -76,15 +78,15 @@
                         <span class="download-text">Confirm</span></a>
                 </div>
     </main>
-        <footer class="footer-main">
-            <div class="footer-content container">
-                <div class="logo-footer-container">
-                    <img class="logo-img" src="img/cloud-logo.png">
-                    <h1 class="logo-txt">Memedream</h1>
-                </div>
-                <small class="rights">Coffee Rights 2020</small>
+    <footer class="footer-main">
+        <div class="footer-content container">
+            <div class="logo-footer-container">
+                <img class="logo-img" src="img/cloud-logo.png">
+                <h1 class="logo-txt">Memedream</h1>
             </div>
-        </footer>
+            <small class="rights">Coffee Rights 2020</small>
+        </div>
+    </footer>
     <script src="js/utils.js"></script>
     <script src="js/storage-service.js"></script>
     <script src="js/meme-gen-service.js"></script>
