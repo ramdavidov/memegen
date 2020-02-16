@@ -37,17 +37,6 @@ var gMeme = {
             align: 'center',
             color: '#ffffff',
             stroke: '#000000'
-        },
-        {
-            txt: '',
-            coordsX: 250,
-            coordsY: 400,
-            size: 50,
-            lineWidth: 2,
-            font: 'impact',
-            align: 'center',
-            color: '#ffffff',
-            stroke: '#000000'
         }
     ]
 }
@@ -149,7 +138,7 @@ function resetSelectedLine() {
 
 // Splices the line from the lines array:
 function removeLine(idx) {
-    if (!gMeme.lines.length) return
+    if (!gMeme.lines.length || gMeme.lines.length === 1) return
     gMeme.lines.splice(idx, 1)
 }
 
@@ -192,7 +181,7 @@ function _createLine() {
     let newLine = {
         txt: '',
         coordsX: 250,
-        coordsY: 300,
+        coordsY: 250,
         size: 50,
         lineWidth: 2,
         align: 'center',

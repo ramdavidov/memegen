@@ -28,6 +28,7 @@ function onSelectImg(imgId) {
     getDefaultLinePos()
     showMemeEditor()
     scrollToEl('header-main')
+    focusTxtInput()
 }
 
 // Scrolls the page 
@@ -222,6 +223,7 @@ function onNextTextLine() {
     nextTextLine()
     setLineVals()
     onDrawText()
+    focusTxtInput()
     // Handles focus (mark) for the next line:
     let currLine = getCurrLine()
     drawLineFocus(currLine)
