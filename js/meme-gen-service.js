@@ -105,17 +105,15 @@ function findImg(imgId) {
 
 // Sets the default X,Y position of the lines:
 function setDefaultLinePos(width, height) {
-    let idx = 0
-    gMeme.lines.forEach(line => {
+    gMeme.lines.forEach((line, index) => {
         line.coordsX = Math.floor(width / 2)
-        if (!idx) {
+        if (!index) {
             line.coordsY = line.size + 10
-        } else if (idx === 1) {
+        } else if (index === 1) {
             line.coordsY = height - (line.size / 2)
         } else {
             line.coordsY = Math.floor(height / 2) + line.size
         }
-        idx++
     })
 }
 

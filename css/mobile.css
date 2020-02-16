@@ -85,7 +85,6 @@
 /* meme creator */
 .meme-creator-content {
     flex-direction: column;
-    margin-bottom: 200px;
 }
 
 /* editor tools: */

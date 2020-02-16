@@ -19,7 +19,7 @@
                 <h1 class="logo-txt">Memedream</h1>
             </div>
             <div class="links-container">
-                <a href="#" class="nav-btn" onclick="hideMemeEditor()" onclick="hideMemeEditor()">
+                <a href="#" class="nav-btn" onclick="hideMemeEditor()">
                     <span class="image-gallery">Gallery</span></a>
                 <a href="#" class="nav-btn">
                     <span class="about">About</span></a>
@@ -28,8 +28,8 @@
         </nav>
     </header>
     <main>
-        <section class="memes-img-container flex">
-            <div class="memes-grid-container grid container">
+        <section class="memes-img-container container flex">
+            <div class="memes-grid-container grid">
             </div>
         </section>
         <section class="meme-creator-container">
@@ -71,21 +71,20 @@
                         onchange="onColorChange()">
                     <input type="color" id="stroke-color" name="head" value="#000000" class="editor-btn stroke-btn"
                         onchange="onColorChange()">
-                    <button class="editor-btn download-btn" onclick="onShareSave()">Save</button>
+                    <button class="editor-btn download-btn" onclick="onShareSave()">Download</button>
                     <a href="#" class="editor-btn confirm-btn clean-link" onclick="downloadCanvas(this)" download="">
                         <span class="download-text">Confirm</span></a>
                 </div>
     </main>
-    <footer class="footer-main">
-        <div class="footer-content container">
-            <div class="logo-footer-container">
-                <img class="logo-img" src="img/cloud-logo.png">
-                <h1 class="logo-txt">Memedream</h1>
+        <footer class="footer-main">
+            <div class="footer-content container">
+                <div class="logo-footer-container">
+                    <img class="logo-img" src="img/cloud-logo.png">
+                    <h1 class="logo-txt">Memedream</h1>
+                </div>
+                <small class="rights">Coffee Rights 2020</small>
             </div>
-            <small class="rights">Coffee Rights 2020</small>
-        </div>
-    </footer>
-
+        </footer>
     <script src="js/utils.js"></script>
     <script src="js/storage-service.js"></script>
     <script src="js/meme-gen-service.js"></script>

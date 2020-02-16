@@ -27,7 +27,20 @@ function onSelectImg(imgId) {
     drawImg(imgUrl)
     getDefaultLinePos()
     showMemeEditor()
+    scrollToEl('header-main')
 }
+
+// Scrolls the page 
+function scrollToEl(elClass) {
+    const element = document.querySelector(`.${elClass}`)
+    element.scrollIntoView()
+}
+
+function focusTxtInput() {
+    const elTxtInput = document.querySelector('.text-input')
+    elTxtInput.focus()
+}
+
 
 // Set gMeme with the current img
 function setCurrMeme(img) {
@@ -45,6 +58,7 @@ function showMemeEditor() {
 function hideMemeEditor() {
     const elEditor = document.querySelector('.meme-creator-container')
     const elImgGallery = document.querySelector('.memes-img-container')
+    document.body.classList.remove('menu-open')
     elImgGallery.classList.add('flex')
     elEditor.classList.remove('flex')
 }
@@ -149,29 +163,28 @@ function drawText(line) {
 // Draw focus (mark) for the current line:
 function drawLineFocus(line) {
     if (line !== getCurrLine()) return
-    // let textArea = gCtx.measureText(line.txt)
     gCtx.beginPath()
-    gCtx.rect(1, line.coordsY - line.size, gCanvas.width - 2, line.size)
+    gCtx.rect(1, line.coordsY - line.size, gCanvas.width - 2, line.size + 10)
     gCtx.strokeStyle = '#FFFFFF'
     gCtx.stroke()
+    gCtx.fillStyle = 'rgb(40, 150, 255, 0.2)'
+    gCtx.fill()
 }
 
 // Selects the line that the user clicks on and gives it focus:
 function onLineClicked(ev) {
     var { offsetX, offsetY } = ev
     let meme = getCurrMeme()
-    let lineIdx = 0
-    meme.lines.find(line => {
+    meme.lines.find((line, index) => {
         if (offsetX > 0 &&
             offsetX < gCanvas.width &&
             offsetY > line.coordsY - line.size &&
             offsetY < line.coordsY) {
-            setSelectedLineIdx(lineIdx)
-            setLineVals()
-            onDrawText()
-            setIsLineDrag(true)
+                setSelectedLineIdx(index)
+                setLineVals()
+                onDrawText()
+                setIsLineDrag(true)
         }
-        lineIdx++
     })
 }
 
@@ -249,6 +262,7 @@ function onAddLine() {
     // Adds focus (mark) to the new line
     let currLine = getCurrLine()
     drawLineFocus(currLine)
+    focusTxtInput()
 }
 
 // calls service to delete a line and focus on new line:

@@ -37,6 +37,11 @@ body {
     height: 100%;
 }
 
+main {
+    margin-bottom: 100px;
+    height: 100%;
+}
+
 a {
     color: aliceblue;
     text-decoration: none;

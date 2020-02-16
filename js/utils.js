@@ -52,3 +52,14 @@ function showTimer() {
 // https://dev.to/eddieaich/5-javascript-functions-to-add-to-your-utilities-library-l6j
 // https://www.freecodecamp.org/news/10-js-util-functions-in-reduce/
 
+// Removed: 
+
+// function removeMenu() {
+//     document.body.classList.remove('menu-open')
+// }
+
+// function handleCursorStyle(element, cursorType) {
+//     const elCanvas = document.querySelector(`.${element}`)
+//     elCanvas.style.cursor = cursorType
+// }
+
