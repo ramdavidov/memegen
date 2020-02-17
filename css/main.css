@@ -25,11 +25,6 @@
     src: url(../fonts/Oxygen-Bold.ttf);
 }
 
-@font-face {
-    font-family: impact-phone;
-    src: url(../fonts/impact-phone.ttf);
-}
-
 /* base: */
 
 html {

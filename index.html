@@ -43,39 +43,71 @@
                 <div class="editor-tools-container">
                     <input class="text-input" type="text" id="fname" name="fname" placeholder="your text goes here"
                         onkeyup="onDrawText()">
-                    <button class="editor-btn switch-line-focus" onclick="onNextTextLine()"><img
-                            src="img/icons/up-and-down-opposite-double-arrows-side-by-side.png"
-                            class="edit-icons" /></button>
-                    <button class="editor-btn add-line-btn" onclick="onAddLine()"><img src="img/icons/add.png"
-                            class="edit-icons" /></button>
-                    <button class="editor-btn remove-line-btn trash-icon" onclick="onRemoveLine()"><img
-                            src="img/icons/trash.png" class="edit-icons" /></button>
-                    <button class="editor-btn move-line-down-btn" onclick="onMoveTextDown()"><img
-                            src="img/icons/down-arrow.png" class="edit-icons" /></button>
-                    <button class="editor-btn move-line-up-btn" onclick="onMoveTextUp()"><img
-                            src="img/icons/up-arrow.png" class="edit-icons" /></button>
-                    <button class="editor-btn text-increase-btn" onclick="onIncreaseFontSize()"><img
-                            src="img/icons/increase-font-icon.png" class="edit-icons" /></button>
-                    <button class="editor-btn text-decrease-btn" onclick="onDecreaseFontSize()"><img
-                            src="img/icons/decrease-font-icon.png" class="edit-icons" /></button>
-                    <button class="editor-btn text-align-left-btn" onclick="onChangeAlign('left')"><img
-                            src="img/icons/align-to-left.png" class="edit-icons" /></button>
-                    <button class="editor-btn text-align-center-btn" onclick="onChangeAlign('center')"><img
-                            src="img/icons/center-text-alignment.png" class="edit-icons" /></button>
-                    <button class="editor-btn text-align-right-btn" onclick="onChangeAlign('right')"><img
-                            src="img/icons/align-to-right.png" class="edit-icons" /></button>
-                    <select class="font-pick-btn" id="font-type" onchange="onFontChange()">
-                        <option value="impact-phone">Impact</option>
-                        <option value="Ariel">Arial</option>
+
+                    <button class="editor-btn switch-line-focus" onclick="onNextTextLine()" title="Switch line">
+                        <img src="img/icons/up-and-down-opposite-double-arrows-side-by-side.png"
+                            title="Switch line"
+                            class="edit-icons" />
+                    </button>
+
+                    <button class="editor-btn add-line-btn" onclick="onAddLine()" title="Add line">
+                        <img src="img/icons/add.png"
+                            class="edit-icons" />
+                    </button>
+
+                    <button class="editor-btn remove-line-btn trash-icon" onclick="onRemoveLine()" title="Remove line">
+                        <img
+                            src="img/icons/trash.png" class="edit-icons" />
+                    </button>
+                    <button class="editor-btn move-line-down-btn" onclick="onMoveTextDown()" title="Move line down">
+                        <img
+                            src="img/icons/down-arrow.png" class="edit-icons" />
+                    </button>
+
+                    <button class="editor-btn move-line-up-btn" onclick="onMoveTextUp()" title="Move line up">
+                        <img
+                            src="img/icons/up-arrow.png" class="edit-icons" />
+                    </button>
+
+                    <button class="editor-btn text-increase-btn" onclick="onIncreaseFontSize()" title="Increase text size">
+                        <img
+                            src="img/icons/increase-font-icon.png" class="edit-icons" />
+                    </button>
+
+                    <button class="editor-btn text-decrease-btn" onclick="onDecreaseFontSize()" title="Deccrease text size">
+                        <img src="img/icons/decrease-font-icon.png" class="edit-icons" />
+                    </button>
+
+                    <button class="editor-btn text-align-left-btn" onclick="onChangeAlign('left')" title="Align text left">
+                        <img src="img/icons/align-to-left.png" class="edit-icons" />
+                    </button>
+                    <button class="editor-btn text-align-center-btn" onclick="onChangeAlign('center')" title="Align text center">
+                        <img src="img/icons/center-text-alignment.png" class="edit-icons" />
+                    </button>
+
+                    <button class="editor-btn text-align-right-btn" onclick="onChangeAlign('right')" title="Align text right">
+                        <img src="img/icons/align-to-right.png" class="edit-icons" />
+                    </button>
+
+                    <select class="font-pick-btn" id="font-type" onchange="onFontChange()" title="Select font">
+                        <option value="Impact">Impact</option>
+                        <option value="Arial">Arial</option>
                         <option value="Verdana">Verdana</option>
                     </select>
-                    <input type="color" id="fill-color" name="head" value="#ffffff" class="editor-btn fill-color"
-                        onchange="onColorChange()">
+
+                    <input type="color" id="fill-color" name="head" value="#ffffff" class="editor-btn fill-color" 
+                        onchange="onColorChange()" title="Change text color" />
+
                     <input type="color" id="stroke-color" name="head" value="#000000" class="editor-btn stroke-btn"
-                        onchange="onColorChange()">
-                    <button class="editor-btn download-btn" onclick="onShareSave()">Download</button>
+                        onchange="onColorChange()" title="Change stroke color" />
+
+                    <button class="editor-btn download-btn" onclick="onShareSave()" title="Download Meme">
+                        Download
+                    </button>
+
                     <a href="#" class="editor-btn confirm-btn clean-link" onclick="downloadCanvas(this)" download="">
-                        <span class="download-text">Confirm</span></a>
+                        <span class="download-text">Confirm</span>
+                    </a>
                 </div>
     </main>
     <footer class="footer-main">

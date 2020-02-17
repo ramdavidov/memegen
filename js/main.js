@@ -12,7 +12,10 @@ function renderMemesGallery() {
     let elGrid = document.querySelector('.memes-grid-container')
     let imgsHtmlStrs = ''
     imgs.forEach(img => {
-        let imgHtmlStr = `<img class="meme-img" src="meme-imgs/${img.id}.jpg" onclick="onSelectImg(${img.id}.)"></img>`
+        let imgHtmlStr = `
+        <img class="meme-img" src="meme-imgs/${img.id}.jpg"
+        onclick="onSelectImg(${img.id})">
+        </img>`
         imgsHtmlStrs += imgHtmlStr
     })
     elGrid.innerHTML = imgsHtmlStrs
