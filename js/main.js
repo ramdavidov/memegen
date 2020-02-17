@@ -3,12 +3,12 @@ var gCanvas
 var gCtx
 
 function onInit() {
-    renderMemesGallery()
+    renderImgsGallery()
 }
 
 // Render img gallery:
-function renderMemesGallery() {
-    let imgs = getMemesForDisplay()
+function renderImgsGallery() {
+    let imgs = getImgsForDisplay()
     let elGrid = document.querySelector('.memes-grid-container')
     let imgsHtmlStrs = ''
     imgs.forEach(img => {

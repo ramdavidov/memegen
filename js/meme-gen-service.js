@@ -42,7 +42,7 @@ var gMeme = {
 }
 
 // Return the gImgs for displauy:
-function getMemesForDisplay() {
+function getImgsForDisplay() {
     return gImgs
 }
 
