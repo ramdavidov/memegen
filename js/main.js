@@ -45,7 +45,6 @@ function focusTxtInput() {
     elTxtInput.focus()
 }
 
-
 // Set gMeme with the current img
 function setCurrMeme(img) {
     updateMemeImg(img)
@@ -90,6 +89,7 @@ function setCanvasSize() {
     }
 }
 
+// Sets lines (X and Y) based on img size:
 function getDefaultLinePos() {
     setDefaultLinePos(gCanvas.width, gCanvas.height)
 }
